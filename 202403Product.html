@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鞋款介紹</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <style>
+        .banner{
+            height: 320px;
+            background-image: url(images/10.jpg);
+            }
+            .pimg:hover{
+            box-shadow: 2px 2px 2px 2px #ccc;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+  <!--section01-->
+<section class="bg-secondary">
+  <div class="container">
+      <div class="text-end">
+      <a href="#"><i class="fa-brands fa-x-twitter text-white mx-2 fa-2x"></i></a>
+      <a href="#"><i class="fa-brands fa-square-facebook text-white mx-2 fa-2x"></i></a>
+      <a href="#"><i class="fa-brands fa-youtube text-white mx-2 fa-2x"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram text-white mx-2 fa-2x"></i></a>
+      </div>
+  </div>
+</section>
+
+<!--section02-->
+<section> 
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">首頁</a>
+            </li>
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                商品介紹
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">跑步鞋</a></li>
+                <li><a class="dropdown-item" href="#">籃球鞋</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">休閒鞋</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                關於我們
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">聯絡方式</a></li>
+                <li><a class="dropdown-item" href="#">服務據點(搭配估狗地圖)</a></li> 
+              </ul>
+            </li>
+            
+
+          </ul>
+          <div>
+            <span class="text-light h5" id="user_message"></span>
+              <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#loginModal" id="s02_login_btn">登入</button>
+              <button class="btn btn-success"  id="s02_reg_btn" data-bs-toggle="modal" data-bs-target="#registerModal">註冊</button>
+              <button class="btn btn-danger d-none" id="s02_logout_btn">登出</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+</section>
+
+<!--section 02 register 註冊-->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h1 class="modal-title fs-5" id="exampleModalLabel">會員註冊</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="timeline-section02">
+      <div class="modal-body ">
+        
+        <div class="row">
+          <div class="col-6">
+          <h3>會員守則</h3>
+          <p>1.會員註冊時，需提供您本人正確、最新及完整資料。</p>
+          <p>2.本公司對您所提供的資料不負查證真偽之責任，如因您登錄不實資料或冒用他人名義以致侵害他人權利或違法時，應自負相關法律責任；如因此造成本公司損害，您須負賠償之責任。</p>
+          <p>3.本公司確認您註冊會員完成後，將依當時所建置的服務、項目、內容、狀態及功能，對您提供本服務；本公司保留隨時新增、減少或變更各該服務、項目、內容及功能之全部或一部之權利，且不另行個別通知。</p>
+          <p>4.當您以本公司會員登入使用各項服務（包括但不限於網站、APP）時，個別服務可能另訂有相關使用規範，詳細法律關係、權利、義務等皆依個別服務之規定辦理，請您自行參閱並遵守個別服務之規定。</p>
+          <p>5.登入資訊僅限於您個人使用，您不得出租、出借、移轉或讓與給其他第三人使用。無論是否由本人親自輸入或操作，以登入資訊登入本服務後所進行的一切行為，都將視為您本人的行為，須負完全的責任。</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="chk01" name="chk01">
+            <label class="form-check-label" for="chk01">
+                同意
+            </label>
+        </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-3">
+              <label for="username" class="form-label">帳號</label>
+              <input type="text" class="form-control" placeholder="帳號字數4-8!" id="username"
+                  name="username">
+              <div class="valid-feedback">帳號符合規則</div>
+              <div class="invalid-feedback">帳號不符合規則</div>
+          </div>
+          <div class="mb-3">
+              <label for="password" class="form-label">密碼</label>
+              <input type="password" class="form-control" placeholder="密碼字數5-10!" id="password"
+                  name="password">
+              <div class="valid-feedback">密碼符合規則</div>
+              <div class="invalid-feedback">密碼不符合規則</div>
+          </div>
+          <div class="mb-3">
+              <label for="re_password" class="form-label">確認密碼</label>
+              <input type="password" class="form-control" placeholder="確認密碼!" id="re_password"
+                  name="re_password">
+              <div class="valid-feedback">密碼一致</div>
+              <div class="invalid-feedback">密碼不一致</div>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">聯絡電話</label>
+            <input type="phone" class="form-control" placeholder="請留10碼手機號碼" id="phone"
+                name="phone">
+            <div class="valid-feedback">聯絡電話符合規則</div>
+            <div class="invalid-feedback">聯絡電話不符合規則</div>
+        </div>
+          <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" placeholder="email字數1~20!" id="email"
+                  name="email">
+              <div class="valid-feedback">Email符合規則</div>
+              <div class="invalid-feedback">Email不符合規則</div>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="chk_lv" name="chk_lv" >
+            <label class="form-check-label" for="chk_lv">
+                是否願意成為高級會員
+            </label>
+            <a href="#">**會員福利**</a>
+        </div>
+          
+      </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+  <button type="button" class="btn btn-primary" id="reg_btn">註冊</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+      <div class="banner bg-info bg-cover"></div>
+      <div class="container">
+        <h2 class="text-danger fw-900 mt-3">|鞋款介紹<small class="fw-100 text-muted">Product</small></h2>
+        <div class="row" id="mydata">
+            <div class="col-md-4 text-center mt-3">
+            <div class="pimg bg-cover" style="background-image: url(/202312/upload/); height: 220px;"></div>
+            <h3>AJ1</h3>
+            <p>簡潔線條與精雕細琢表面的結合。於是，極簡化的設計語言理所當然地將奢華與運動合而為一。動感的比例、加長的車輪軸距和寬大的輪距賦予 C-Class 明確的前進爆發力。</p>
+            <a href="#" class="btn btn-success w-100">查看
+            </a>
+        
+        </div>
+    
+        
+            <div class="col-md-4 text-center mt-3">
+            <div class="pimg bg-cover" style="background-image: url(images/專題照片/1130-3.jpg); height: 220px;"></div>
+            <h3>AJ1 black</h3>
+            <p>走到什麼是這款最低尚未，最低寶寶，加強。</p>
+            <a href="#" class="btn btn-success w-100">查看
+            </a>
+        </div>
+
+        
+        
+            <div class="col-md-4 text-center mt-3">
+            <div class="pimg bg-cover" style="background-image: url(images/專題照片/1130-5.jpg); height: 220px;"></div>
+            <h3>AJ6</h3>
+            <p>走到什麼是這款最低尚未，最低寶寶，加強。</p>
+            <a href="#" class="btn btn-success w-100">查看
+            </a>
+        </div>
+         
+     
+        
+            <div class="col-md-4 text-center mt-3">
+            <div class="pimg bg-cover" style="background-image: url(images/專題照片/1130-7.jpg); height: 220px;"></div>
+            <h3>AJ1</h3>
+            <p>走到什麼是這款最低尚未，最低寶寶，加強。</p>
+            <a href="#" class="btn btn-success w-100">查看
+            </a>
+        </div>
+
+        
+            <div class="col-md-4 text-center mt-3">
+            <div class="pimg bg-cover" style="background-image: url(images/專題照片/1130-9.jpg); height: 220px;"></div>
+            <h3>AJ1 low</h3>
+            <p>走到什麼是這款最低尚未，最低寶寶，加強。</p>
+            <a href="#" class="btn btn-success w-100 mt-auto">查看
+            </a>
+        </div>
+         
+
+         
+
+      </div>
+      <div class="footer bg-dark text-white text-center fw-900 py-3 ">
+        @2024僅供專題使用
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <script src="js/bootstrap.bundle.min.js"></script> 
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+      
+        $(function(){
+            $.ajax({
+                type:"GET",
+                url:"202403Product_Read.php",
+                dataType: "json",
+                success: showdata,
+                error:function(){
+                    alert("串接錯誤!");
+                }
+
+            });
+        });
+
+        function showdata(data){
+            console.log(data);
+          
+            $("#mydata").empty();
+           for(var i=0; i<data.length; i++){
+               var strHTML = '<div class="col-md-4 mt-3 d-flex flex-column"><div class="pimg bg-cover" style="background-image: url(\'http://192.168.10.54/202312/upload/' + data.data[i].Photo + '\'); height: 220px;"></div><h3>' + data.data[i].Product + '</h3><p>價格: ' + data.data[i].Price + ' </p><p>' + data.data[i].Content + '</p><a href="20231226-car-details.html" target="_blank" class="btn btn-success w-100 mt-auto">查看</a></div>';
+
+                 $("#mydata").append(strHTML);
+            }
+         }
+    </script>   
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會員管理系統</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body {
+      font-family: "Lato", sans-serif;
+      transition: background-color .5s;
+    }
+    
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+    
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+    
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+    
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+    
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+    }
+    
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+    </style>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="202403.html">首頁</a>
+    <a href="202403member-control_panel.html">會員管理</a>
+    <a href="#">產品管理</a>
+    <a href="#">活動訊息管理</a>
+  </div>
+  
+  <div id="main">
+    
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+  </div>
+  
+  
+             
+
+
+    <div class="container pt-5">
+        <table class="table table-bordered table-hover table-sm border-success table-rwd">
+            <caption class="text-end">會員列表</caption>
+            <thead class="table-dark">
+                <tr>
+                    <th>會員編號</th>
+                    <th>會員名稱</th>
+                    <th>會員手機</th>
+                    <th>會員信箱</th>
+                    <th>註冊時間</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody id="mydata">
+                <tr>
+                    <td>商品編號</td>
+                    <td>產品名稱</td>
+                    <td>產品價格</td>
+                    <td>產品甜度</td>
+                    <td>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateModal">更新</button>
+                        <button class="btn btn-danger">刪除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center" id="pageList">
+                <li class="page-item"><a class="page-link" href="#" onclick="drawTable(0)">1</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- updateModal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-bg-success">
+                    <h1 class="modal-title fs-3 fw-900" id="exampleModalLabel">會員更新</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="updateModal_username" class="form-label">帳號</label>
+                        <input type="text" class="form-control" disabled id="updateModal_username"
+                            name="updateModal_username">
+                    </div><div class="mb-3">
+                        <label for="updateModal_phone" class="form-label">聯絡電話</label>
+                        <input type="phone" class="form-control" id="updateModal_phone"
+                            name="updateModal_phone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateModal_email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="updateModal_email" name="updateModal_email">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="updateModal_updata_btn">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+          document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").style.marginLeft= "0";
+          document.body.style.backgroundColor = "white";
+        }
+        </script>
+    <script>
+        var u_id; //for update
+        var newData = [];
+        $(function () {
+            //讀取會員資料
+            $.ajax({
+                type: "GET",
+                url: "202403member-Read-api.php",
+                async: false,
+                dataType: "json",
+                success: showdata,
+                error: function () {
+                    alert("error-202403member-Read-api.php");
+                }
+            });
+
+            //#update_btn 更新按鈕監聽
+            // $("#mydata #update_btn").click(function () {
+            $("body").on("click", "#mydata #update_btn", function(){
+                console.log($(this).data("id") +$(this).data("phone")+ $(this).data("email") + $(this).data("username"));
+                u_id = $(this).data("id");
+                $("#updateModal_username").val($(this).data("username"));
+                $("#updateModal_phone").val($(this).data("phone"));
+                $("#updateModal_email").val($(this).data("email"));
+            });
+
+            //delete_btn 刪除按鈕監聽
+            $("#mydata #delete_btn").click(function () {
+                if (confirm("確認刪除?")) {
+                    console.log($(this).data("id"));
+                    //傳遞刪除資料至後端api {"ID":"XX"}
+                    var dataJSON = {};
+                    dataJSON["ID"] = $(this).data("id");
+                    console.log(JSON.stringify(dataJSON));
+
+                    $.ajax({
+                        type: "POST",
+                        url: "202403member-Delete-api.php",
+                        data: JSON.stringify(dataJSON),
+                        dataType: "json",
+                        success: showdata_delete,
+                        error: function () {
+                            alert("error-202403member-Delete-api.php");
+                        }
+                    });
+                }
+            });
+
+            //#updateModal_updata_btn 監聽
+            $("#updateModal_updata_btn").click(function () {
+                //傳遞更新資料至後端api {"ID":"XX", "Email":"XXXXX"}
+                var dataJSON = {};
+                dataJSON["ID"] = u_id;
+                dataJSON["Email"] = $("#updateModal_email").val();
+                console.log(JSON.stringify(dataJSON));
+
+                $.ajax({
+                    type: "POST",
+                    url: "202403member-Update-api.php",
+                    data: JSON.stringify(dataJSON),
+                    dataType: "json",
+                    success: showdata_updata,
+                    error: function () {
+                        alert("error-202403member-Update-api.php");
+                    }
+                });
+            });
+        });
+        function showdata(data) {
+            //整理資料儲存為二維陣列
+            data.data.forEach(function (item, key) {
+                console.log(key);
+                if (key % 8 == 0) {
+                    newData.push([]);
+                }
+                var page = parseInt(key / 8);
+                newData[page].push(item);
+            });
+            drawTable(0);
+
+            //產生頁碼
+            $("#pageList").empty();
+            newData.forEach(function(item, key){
+                var thisPage = key + 1;
+                var strHTML = '<li class="page-item"><a class="page-link" href="#" onclick="drawTable(' + key + ')">'+ thisPage +'</a></li>';
+                $("#pageList").append(strHTML);
+            });
+
+            console.log(newData);
+        }
+
+        function drawTable(page) {
+            $("#mydata").empty();
+            newData[page].forEach(function (item) {
+                var strHTML = '<tr><td>' + item.ID + '</td><td>' + item.Username + '</td><td>' + item.Phone + '</td><td>' + item.Email + '</td><td>' + item.Created_at + '</td><td><button class="btn btn-success me-2" data-id="' + item.ID + '" data-Phone="' + item.Phone + '" data-email="' + item.Email + '" data-username="' + item.Username + '" id="update_btn"  data-bs-toggle="modal" data-bs-target="#updateModal">更新</button><button class="btn btn-danger" id="delete_btn" data-id="' + item.ID + '">刪除</button></td></tr>';
+                $("#mydata").append(strHTML);
+            });
+        }
+
+        function showdata_updata(data) {
+            console.log(data);
+            if (data.state) {
+                // alert(data.message);
+                Swal.fire({
+                    title: "更新完成!",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "確認",
+                    denyButtonText: `Don't save`
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        Swal.fire("Saved!", "", "success");
+                        location.href = "202403member-control_panel.html";
+                    } else if (result.isDenied) {
+                        Swal.fire("Changes are not saved", "", "info");
+                    }
+                });
+            } else {
+                alert(data.message);
+            }
+        }
+
+        function showdata_delete(data) {
+            console.log(data);
+            if (data.state) {
+                alert(data.message);
+                location.href = "202403member-control_panel.html";
+            } else {
+                alert(data.message);
+            }
+        }
+    </script>
+</body>
+
+</html>
