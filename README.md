@@ -1,8 +1,8 @@
 
 ## 畫面
 
-![範例圖片 1](https://fakeimg.pl/500/)
-![範例圖片 2](https://fakeimg.pl/500/)
+![範例圖片 1](https://github.com/kaoeddie26/projectfinal/blob/main/images/%E7%94%A2%E5%93%81%E5%88%97%E8%A1%A8.png)
+![範例圖片 2](https://github.com/kaoeddie26/projectfinal/blob/main/images/%E6%96%B0%E5%A2%9E%E5%95%86%E5%93%81.png)
 ![範例圖片 3](https://fakeimg.pl/500/)
 
 ## 專案技術
